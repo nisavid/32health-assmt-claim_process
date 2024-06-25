@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: claims
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  web:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db/claims
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RATE_LIMIT_TIMES: 10
+      RATE_LIMIT_SECONDS: 60

@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+uvicorn = {extras = ["standard"], version = "*"}
+fastapi = "*"
+asyncpg = "*"
+pydantic = "*"
+sqlmodel = "*"
+docker = "*"
+fastapi-limiter = "*"
+pydantic-settings = "*"
+python-dateutil = "*"
+
+[dev-packages]
+pytest = "*"
+pytest-asyncio = "*"
+httpx = "*"
+pytest-docker = "*"
+aioredis = "*"
+redis = "*"
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.4"
